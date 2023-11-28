@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>PenguinPGP Toolbar</title>
+        <link rel="stylesheet" type="text/css" href="styles/fonts.css" />
+        <link rel="stylesheet" type="text/css" href="styles/toolbar.css" />
+        <script type="text/javascript" src="scripts/openpgp.min.js" async="async"></script>
+        <script type="text/javascript" src="scripts/keyutils.js" async="async"></script>
+        <script type="text/javascript" src="scripts/toolbar.js" defer="defer"></script>
+    </head>
+    <body>
+        <div id="tabs">
+            <button id="tabImport" class="selected">Import Key</button>
+            <button id="tabList">Key Library</button>
+        </div>
+        <div id="importKey" class="tab form">
+            <h1>Import PGP Key</h1>
+            <p><textarea id="keyData" placeholder="-----BEGIN PGP PUBLIC KEY BLOCK-----"></textarea></p>
+            <p><input id="keyPassphrase" type="password" placeholder="Key Passphrase" /></p>
+            <p id="importStatus" class="message"></p>
+            <p><button id="importBtn">Import</button></p>
+        </div>
+        <div id="keyLib" class="tab unselected">
+            <p class="loading">Loading stored keys...</p>
+        </div>
+    </body>
+</html>

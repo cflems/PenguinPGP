@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: var(--ff-text-primary);
+    font-weight: 400;
+    font-size: 14pt;
+    background: #f8f8f8;
+}
+#tabs {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+#tabs button {
+    flex-grow: 1;
+    height: 2rem;
+    border: 0.5px solid #e0e0e0;
+    border-top: none;
+    background: #f9f9f3;
+    font-family: var(--ff-text-secondary);
+    font-size: 11pt;
+    font-weight: 200;
+}
+#tabs button:hover {
+    background: #f2f3f4;
+}
+#tabs button.selected {
+    z-index: 1;
+    background: #eaebf0;
+    box-shadow: 0px 0px 5px -1px #000000c0;
+}
+#tabs button.selected:hover {
+    background: #e6e8ea;
+}
+#tabs #tabImport {
+    border-bottom-right-radius: 2.5px;
+}
+#tabs #tabList {
+    border-bottom-left-radius: 2.5px;
+}
+.tab.unselected {
+    display: none;
+}
+.tab {
+    padding: 1rem 0px;
+    width: 75%;
+    text-align: left;
+}
+h1, p {
+    margin: 0.5rem 0;
+}
+h1 {
+    font-size: 1.17em;
+}
+.form p {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 0.75rem;
+}
+.form p > * {
+    flex-grow: 1;
+}
+.form textarea {
+    resize: none;
+    height: 16rem;
+}
+input[type=text], input[type=password], textarea {
+    font-family: var(--ff-text-mono);
+    font-size: 10.5pt;
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.25rem;
+    outline: none;
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    border: 1px solid #a0a0a0;
+}
+.form p > button {
+    height: 2rem;
+    border: 0.5px solid #d0d0d0;
+    border-radius: 0.25em;
+    font-family: var(--ff-text-secondary);
+    font-size: 11pt;
+    font-weight: 200;
+    background: #dadbe0;
+}
+.form p > button:hover {
+    background: #d6d8da;
+}
+.form p > button:active {
+    background: #dcdde2;
+}
+.form p.message {
+    font-size: 12pt;
+    margin-top: -0.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 200;
+}
+.form p.message.success {
+    color: #00b800;
+}
+.form p.message.failure {
+    color: #800000;
+}

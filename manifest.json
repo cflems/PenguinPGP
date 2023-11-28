@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "PenguinPGP",
+    "description": "Render encrypted content and verify digital signatures in real time with PenguinPGP.",
+    "version": "0.0",
+    "icons": {
+      "16": "images/pgp-16.png",
+      "32": "images/pgp-32.png",
+      "48": "images/pgp-48.png",
+      "128": "images/pgp-128.png"
+    },
+    "action": {
+        "default_popup": "toolbar.html",
+        "default_icon": "images/pgp-16.png"
+    },
+    "content_scripts": [
+        {
+            "js": ["scripts/openpgp.min.js", "scripts/keyutils.js", "scripts/render.js"],
+            "matches": ["*://*/*"]
+        }
+    ],
+    "permissions": [
+        "storage",
+        "unlimitedStorage"
+    ]
+  }
