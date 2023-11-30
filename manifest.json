@@ -16,7 +16,8 @@
     "content_scripts": [
         {
             "js": ["scripts/openpgp.min.js", "scripts/keyutils.js", "scripts/render.js"],
-            "matches": ["*://*/*"]
+            "matches": ["*://*/*", "file://*/*"],
+            "matchAboutBlank": true
         }
     ],
     "permissions": [

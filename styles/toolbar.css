@@ -50,6 +50,10 @@ body {
     width: 75%;
     text-align: left;
 }
+.tab .loading {
+    font-family: var(--ff-text-primary);
+    font-size: 12pt;
+}
 h1, p {
     margin: 0.5rem 0;
 }
@@ -106,4 +110,56 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 .form p.message.failure {
     color: #800000;
+}
+#keyLib h3, #keyLib h6 {
+    margin: 0;
+}
+#keyLib h3 {
+    font-size: 12pt;
+    margin-bottom: 0.25rem;
+}
+#keyLib .keyItem {
+    margin-bottom: 0.75rem;
+}
+#keyLib .keyTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;    
+}
+#keyLib .keyLabel {
+    font-family: var(--ff-text-mono);
+    font-weight: 400;
+    font-size: 11pt;
+    flex-grow: 1;
+}
+#keyLib .identList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 0.5rem;
+}
+#keyLib .identItem {
+    font-family: var(--ff-text-secondary);
+    font-size: 10pt;
+    font-weight: 200;
+}
+#keyLib .deleteKeyButton {
+    background-image: url('../images/x.svg');
+}
+#keyLib .keyOptions button {
+    width: 11pt;
+    height: 11pt;
+    border: none;
+    border-radius: 16px;
+    background-color: unset;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+#keyLib .keyOptions button:hover {
+    background-color: #00000010;
+}
+#keyLib .keyOptions button:active {
+    background-color: #00000020;
 }
