@@ -54,7 +54,12 @@ body {
     font-family: var(--ff-text-primary);
     font-size: 12pt;
 }
-h1, p {
+hr {
+    margin: 1rem 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+}
+p, h1 {
     margin: 0.5rem 0;
 }
 h1 {
@@ -63,7 +68,7 @@ h1 {
 .form p {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: baseline;
     margin-bottom: 0.75rem;
 }
 .form p > * {
@@ -100,10 +105,10 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     background: #dcdde2;
 }
 .form p.message {
-    font-size: 12pt;
+    font-size: 11pt;
     margin-top: -0.25rem;
     margin-bottom: 0.5rem;
-    font-weight: 200;
+    font-weight: 400;
 }
 .form p.message.success {
     color: #00b800;
@@ -115,8 +120,9 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     margin: 0;
 }
 #keyLib h3 {
-    font-size: 12pt;
-    margin-bottom: 0.25rem;
+    font-size: 14pt;
+    font-weight: 700;
+    margin-bottom: 0.125rem;
 }
 #keyLib .keyItem {
     margin-bottom: 0.75rem;
@@ -128,32 +134,38 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 #keyLib .keyLabel {
     font-family: var(--ff-text-mono);
-    font-weight: 400;
-    font-size: 11pt;
+    font-weight: 200;
+    font-size: 12.5pt;
+    letter-spacing: 0.5px;
     flex-grow: 1;
 }
 #keyLib .identList {
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-left: 0.5rem;
+    padding-left: 1rem;
 }
 #keyLib .identItem {
-    font-family: var(--ff-text-secondary);
-    font-size: 10pt;
-    font-weight: 200;
+    font-family: var(--ff-text-primary);
+    font-size: 12pt;
+    font-weight: 400;
+    letter-spacing: 1.5;
+}
+#keyLib .copyKeyButton {
+    background-image: url('../images/copy.svg');
 }
 #keyLib .deleteKeyButton {
     background-image: url('../images/x.svg');
 }
 #keyLib .keyOptions button {
-    width: 11pt;
-    height: 11pt;
+    margin: 0 2px;
+    width: 12.5pt;
+    height: 12.5pt;
     border: none;
     border-radius: 16px;
     background-color: unset;
     background-position: center;
-    background-size: contain;
+    background-size: 11pt;
     background-repeat: no-repeat;
     cursor: pointer;
 }

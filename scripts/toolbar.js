@@ -95,7 +95,7 @@
         importSuccess();
     }
 
-    function createKeyElement (pk, deleteCallback) {
+    function createKeyElement (pk, copyCallback, deleteCallback) {
         const keyItem = document.createElement('div');
         keyItem.className = 'keyItem';
         const keyTitle = document.createElement('div');
@@ -109,10 +109,15 @@
         const keyOptions = document.createElement('div');
         keyOptions.className = 'keyOptions';
         keyTitle.appendChild(keyOptions);
+        
+        const copyKeyButton = document.createElement('button');
+        copyKeyButton.className = 'copyKeyButton';
+        copyKeyButton.addEventListener('click', copyCallback);
+        keyOptions.appendChild(copyKeyButton);
+
         const deleteKeyButton = document.createElement('button');
         deleteKeyButton.className = 'deleteKeyButton';
         deleteKeyButton.addEventListener('click', async e => {
-            e.preventDefault();
             if (window.confirm(CONFIRM_DELETE_KEY_MESSAGE)) {
                 await deleteCallback();
                 renderKeyLib();
@@ -137,7 +142,8 @@
 
     async function renderKeyLib () {
         const pubLib = document.createElement('div'),
-              privLib = document.createElement('div');
+              privLib = document.createElement('div'),
+              separator = document.createElement('hr');
         pubLib.id = 'pubLib';
         privLib.id = 'privLib';
 
@@ -159,30 +165,46 @@
 
         const pubring = await load_pubkeys(),
               privring = await load_privkeys();
+        const pubIDs = Object.keys(pubring),
+              privIDs = Object.keys(privring);
 
-        Object.keys(pubring).forEach(keyID => pubList.appendChild(
-            createKeyElement(pubring[keyID], () => delete_pubkey(keyID))));
-        Object.keys(privring).forEach(keyID => privList.appendChild(
-            createKeyElement(privring[keyID], () => delete_privkey(keyID))));
+        pubIDs.forEach(keyID => pubList.appendChild(
+            createKeyElement(pubring[keyID],
+                            () => navigator.clipboard.writeText(pubring[keyID].armor()),
+                            () => delete_pubkey(keyID))));
+        privIDs.forEach(keyID => privList.appendChild(
+            createKeyElement(privring[keyID],
+                            () => navigator.clipboard.writeText(privring[keyID].armor()),
+                            () => delete_privkey(keyID))));
 
-        keyLib.replaceChildren(privLib, pubLib);
+        if (pubIDs.length === 0) {
+            const noPubKeys = document.createElement('p');
+            noPubKeys.className = 'loading';
+            noPubKeys.textContent = 'You have no public keys.';
+            pubList.appendChild(noPubKeys);
+        }
+        if (privIDs.length === 0) {
+            const noPrivKeys = document.createElement('p');
+            noPrivKeys.className = 'loading';
+            noPrivKeys.textContent = 'You have no private keys.';
+            privList.appendChild(noPrivKeys);
+        }
+
+        keyLib.replaceChildren(privLib, separator, pubLib);
     }
 
     /* Tab Button Effects */
     document.querySelectorAll('#tabs button').forEach(n => n.addEventListener('click', function (e) {
-        e.preventDefault();
         document.querySelectorAll('#tabs button').forEach(btn => btn.classList.remove('selected'));
         n.classList.add('selected');
     }));
 
     /* Tab Opening */
     importKeyTab.addEventListener('click', function (e) {
-        e.preventDefault();
         keyLib.classList.add('unselected');
         importForm.classList.remove('unselected');
     });
     keyLibTab.addEventListener('click', function (e) {
-        e.preventDefault();
         importForm.classList.add('unselected');
         keyLib.classList.remove('unselected');
         renderKeyLib();
@@ -190,7 +212,6 @@
 
     /* Wiring: Import Form */
     importForm.querySelector('#importBtn').addEventListener('click', function (e) {
-        e.preventDefault();
         if (importKeyData.value.indexOf('PRIVATE') !== -1)
             importPrivateKey(importKeyData.value, importPassphrase.value);
         else
