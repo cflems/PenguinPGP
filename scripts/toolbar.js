@@ -112,11 +112,13 @@
         
         const copyKeyButton = document.createElement('button');
         copyKeyButton.className = 'copyKeyButton';
+        copyKeyButton.title = 'Copy Key';
         copyKeyButton.addEventListener('click', copyCallback);
         keyOptions.appendChild(copyKeyButton);
 
         const deleteKeyButton = document.createElement('button');
         deleteKeyButton.className = 'deleteKeyButton';
+        deleteKeyButton.title = 'Delete Key';
         deleteKeyButton.addEventListener('click', async e => {
             if (window.confirm(CONFIRM_DELETE_KEY_MESSAGE)) {
                 await deleteCallback();
