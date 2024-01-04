@@ -31,7 +31,6 @@ body {
 #tabs button.selected {
     z-index: 1;
     background: #eaebf0;
-    box-shadow: 0px 0px 5px -1px #000000c0;
 }
 #tabs button.selected:hover {
     background: #e6e8ea;
@@ -59,7 +58,7 @@ hr {
     border: none;
     border-top: 1px solid #e0e0e0;
 }
-p, h1 {
+p, h1, h3 {
     margin: 0.5rem 0;
 }
 h1 {
@@ -71,20 +70,23 @@ h1 {
     align-items: baseline;
     margin-bottom: 0.75rem;
 }
-.form p > * {
+.form p > :first-child {
     flex-grow: 1;
 }
 .form textarea {
     resize: none;
     height: 16rem;
 }
-input[type=text], input[type=password], textarea {
+input[type=text], input[type=password], input[type=color], input[type=checkbox], select, textarea {
     font-family: var(--ff-text-mono);
     font-size: 10.5pt;
     padding: 0.5rem;
     border: 1px solid #e0e0e0;
     border-radius: 0.25rem;
     outline: none;
+}
+input[type=color] {
+    padding: 0.375rem 0.5rem;
 }
 input[type=text]:focus, input[type=password]:focus, textarea:focus {
     border: 1px solid #a0a0a0;
@@ -174,4 +176,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 #keyLib .keyOptions button:active {
     background-color: #00000020;
+}
+#configForm {
+    font-size: 12pt;
 }

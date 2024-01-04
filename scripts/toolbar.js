@@ -9,6 +9,8 @@
     const importPassphrase = document.querySelector('#keyPassphrase');
     const keyLibTab = document.querySelector('#tabs #tabList');
     const keyLib = document.querySelector('#keyLib');
+    const configTab = document.querySelector('#tabs #tabConfig');
+    const configForm = document.querySelector('#configForm');
 
     function randomSecurePassphrase() {
         const chars = [];
@@ -195,6 +197,19 @@
         keyLib.replaceChildren(privLib, separator, pubLib);
     }
 
+    function valueFieldByType (node) {
+        return node?.type === 'checkbox' ? 'checked' : 'value';
+    }
+
+    function populateConfigForm () {
+        configForm.querySelectorAll('input,select').forEach(async n => {
+            n[valueFieldByType(n)] = await get_config(n.id);
+            n.addEventListener('change', function (e) {
+                put_config(n.id, n[valueFieldByType(n)]);
+            });
+        });
+    }
+
     /* Tab Button Effects */
     document.querySelectorAll('#tabs button').forEach(n => n.addEventListener('click', function (e) {
         document.querySelectorAll('#tabs button').forEach(btn => btn.classList.remove('selected'));
@@ -204,12 +219,20 @@
     /* Tab Opening */
     importKeyTab.addEventListener('click', function (e) {
         keyLib.classList.add('unselected');
+        configForm.classList.add('unselected');
         importForm.classList.remove('unselected');
     });
     keyLibTab.addEventListener('click', function (e) {
         importForm.classList.add('unselected');
+        configForm.classList.add('unselected');
         keyLib.classList.remove('unselected');
         renderKeyLib();
+    });
+    configTab.addEventListener('click', function (e) {
+        importForm.classList.add('unselected');
+        keyLib.classList.add('unselected');
+        configForm.classList.remove('unselected');
+        populateConfigForm();
     });
 
     /* Wiring: Import Form */

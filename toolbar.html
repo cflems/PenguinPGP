@@ -7,12 +7,14 @@
         <link rel="stylesheet" type="text/css" href="styles/toolbar.css" />
         <script type="text/javascript" src="scripts/openpgp.min.js" async="async"></script>
         <script type="text/javascript" src="scripts/keyutils.js" async="async"></script>
+        <script type="text/javascript" src="scripts/configutils.js" async="async"></script>
         <script type="text/javascript" src="scripts/toolbar.js" defer="defer"></script>
     </head>
     <body>
         <div id="tabs">
             <button id="tabImport" class="selected">Import Key</button>
             <button id="tabList">Key Library</button>
+            <button id="tabConfig">Configuration</button>
         </div>
         <div id="importKey" class="tab form">
             <h1>Import PGP Key</h1>
@@ -23,6 +25,44 @@
         </div>
         <div id="keyLib" class="tab unselected">
             <p class="loading">Loading stored keys...</p>
+        </div>
+        <div id="configForm" class="tab form unselected">
+            <h3>User IDs</h3>
+            <p>
+                <label for="uid-format">UID Format:</label>
+                <select id="uid-format">
+                    <option value="0">None</option>
+                    <option value="1">John Random</option>
+                    <option value="2">j@rando.net</option>
+                    <option value="3">John Random &lt;j@rando.net&gt;</option>
+                </select>
+            </p>
+            <p>
+                <label for="uid-placeholder">UID Placeholder:</label>
+                <input id="uid-placeholder" type="text" placeholder="Unknown" />
+            </p>
+            <p>
+                <label for="display-keyids">Display Key IDs</label>
+                <input id="display-keyids" type="checkbox" />
+            </p>
+            <hr />
+            <h3>Colors</h3>
+            <p>
+                <label for="verified-sig-color">Verified Signature Color:</label>
+                <input id="verified-sig-color" type="color" />
+            </p>
+            <p>
+                <label for="unverified-sig-color">Unverified Signature Color:</label>
+                <input id="unverified-sig-color" type="color" />
+            </p>
+            <p>
+                <label for="mixed-sigs-color">Mixed Signatures Color:</label>
+                <input id="mixed-sigs-color" type="color" />
+            </p>
+            <p>
+                <label for="unsigned-msg-color">Unsigned Message Color:</label>
+                <input id="unsigned-msg-color" type="color" />
+            </p>
         </div>
     </body>
 </html>

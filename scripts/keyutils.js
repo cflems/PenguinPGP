@@ -2,7 +2,7 @@ async function get_privring () {
     return (await chrome.storage.local.get(["privRing"]))?.privRing ?? {};
 }
 
-function put_privring(privring) {
+function put_privring (privring) {
     return chrome.storage.local.set({"privRing": privring});
 }
 
@@ -10,7 +10,7 @@ async function get_pubring () {
     return (await chrome.storage.local.get(["pubRing"]))?.pubRing ?? {};
 }
 
-function put_pubring(pubring) {
+function put_pubring (pubring) {
     return chrome.storage.local.set({"pubRing": pubring});
 }
 
